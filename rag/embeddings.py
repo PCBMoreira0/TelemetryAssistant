@@ -1,8 +1,10 @@
 from sentence_transformers import SentenceTransformer
 
+import config
+
 _model = SentenceTransformer(
-    "all-MiniLM-L6-v2",
-    cache_folder="data/models"
+    config.EMBEDDING_MODEL,
+    cache_folder=config.MODELS_DIR
 )
 
 

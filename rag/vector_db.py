@@ -2,19 +2,16 @@ from chromadb import Collection, PersistentClient
 from langchain_community.docstore.document import Document
 from rag.embeddings import embed_documents
 
-client = PersistentClient(path="data/chroma")
+import config 
 
-def get_collection() -> Collection:
-    client = PersistentClient(path="data/chroma")
+_client = PersistentClient(path=config.CHROMA_DIR)
 
-    collection = client.get_collection("boat_docs")
-
-    return collection
-
+def get_collection(name: str = "boat_docs") -> Collection:
+    return _client.get_or_create_collection(name)
 
 def generate_vector_db(chunks: list[Document]):
 
-    collection = client.get_or_create_collection("boat_docs")
+    collection = _client.get_or_create_collection("boat_docs")
 
     ids = [chunk.id for chunk in chunks]
     documents = [chunk.page_content for chunk in chunks]

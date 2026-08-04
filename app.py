@@ -1,11 +1,11 @@
 from prompts.prompt import build_prompt
 from rag.augment import augment_prompt
 from rag.embeddings import embed_query
-from rag.response_gen import stream_response
+from llm_client import stream_response
 from rag.retrieval import search_vector_database
 
 
-question = input("Faça uma pergunta: ")
+question = input("Ask something: ")
 
 query = embed_query(question)
 results = search_vector_database(

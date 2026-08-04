@@ -1,3 +1,8 @@
 venv/
-data/
 __pycache__/
+
+data/docs/*
+data/chroma/*
+data/models/*
+
+!data/docs/.gitkeep
